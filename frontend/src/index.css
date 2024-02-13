@@ -1,0 +1,11 @@
+/* index.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+/* Your additional styles go here */
+
+@media (max-width: 1000px) {
+    #responsive {
+      display: none !important;
+    }
+  }
