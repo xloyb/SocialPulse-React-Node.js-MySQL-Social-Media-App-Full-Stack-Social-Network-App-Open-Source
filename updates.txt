@@ -1,0 +1,16 @@
+git commit -m "Profile Page:
+Implemented conditional rendering for profile information to ensure UI components are only displayed when data is available from the API call.
+Added a loading indicator to provide feedback to users while waiting for data to be fetched.
+
+Add Friend/Edit Profile Button:
+Conditionally rendered the "Add Friend" button or "Edit Profile" button based on whether the current user matches the profile user.
+
+Background and Profile Picture Handling:
+Improved handling of background and profile pictures, including fallback URLs for missing images.
+Ensured proper rendering of images by checking for null values before using them in the UI.
+
+
+General Improvements:
+Refactored code for readability and maintainability.
+Added comments and documentation to clarify code functionality and usage.
+These updates enhance the user experience and ensure consistency and reliability in the profile page rendering and functionality."
