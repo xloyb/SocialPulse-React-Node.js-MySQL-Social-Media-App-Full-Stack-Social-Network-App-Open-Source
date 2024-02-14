@@ -21,8 +21,8 @@ const Profile = () => {
       }),
   });
 
-  //  console.log("testing",data);
-  //  console.log(currentUser.id)
+  // console.log("testing",data);
+  // console.log(currentUser.id)
 
   return (
     <div>
