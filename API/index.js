@@ -50,5 +50,5 @@ app.use("/api/posts", postRoutes);
 app.use("/api/users", usersRoutes);
 
 app.listen(8800, () => {
-  console.log("Im working Nigga...");
+  console.log("MyDevify Social is working ...");
 });

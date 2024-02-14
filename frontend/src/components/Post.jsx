@@ -8,13 +8,14 @@ import { useContext } from "react";
 import { makeRequest } from "../axios";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AuthContext } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const Post = ({ post }) => {
   const currentUser = useContext(AuthContext);
   const shouldRenderImage = Boolean(post.img);
   const postidforcomment = post.id;
   
- console.log(currentUser.currentUser.id)
+//  console.log(currentUser.currentUser.id)
   const { isPending , data } = useQuery({
     queryKey: ["likes", post.id],
     queryFn: () =>
@@ -69,14 +70,30 @@ const Post = ({ post }) => {
                 </div>
               </figure>
               <h2 className="absolute card-title">
+              <Link
+                to={`/profile/${post.userId}`}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+              <span>
                 {post.username}
+
+              </span>
+              </Link>
                 <div className="badge badge-secondary">NEW</div>
               </h2>
             </>
           ) : (
             <>
               <h2 className="card-title">
+              <Link
+                to={`/profile/${post.userId}`}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+              <span>
                 {post.username}
+
+              </span>
+              </Link>
                 <div className="badge badge-secondary">NEW</div>
               </h2>
             </>

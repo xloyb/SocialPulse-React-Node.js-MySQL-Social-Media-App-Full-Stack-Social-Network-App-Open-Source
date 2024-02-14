@@ -14,7 +14,6 @@ const Posts = () => {
       }),
   });
 
-console.log("posts data:",data)
 
   return (
     <div className="p-4">
