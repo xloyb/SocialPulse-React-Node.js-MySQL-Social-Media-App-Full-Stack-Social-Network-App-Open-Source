@@ -10,6 +10,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
+
+
 const Post = ({ post }) => {
   const currentUser = useContext(AuthContext);
   const shouldRenderImage = Boolean(post.img);
@@ -54,7 +56,7 @@ const Post = ({ post }) => {
           {shouldRenderImage ? (
             <>
               <figure className="relative">
-                <img src={`uploads/posts/${post.img}`} alt="Post Image" />
+                <img src={`http://localhost:5173/uploads/posts/${post.img}`} alt="Post Image" />
                 <div className="absolute bottom-0 right-0 p-4">
                   <div className="card-actions space-x-2">
                     <FontAwesomeIcon icon={faHeart} className="text-red-500" />
