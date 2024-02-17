@@ -1,4 +1,13 @@
-﻿## SocialPulse React Node.js MySQL Social Media App
+
+![Logo](https://mydevify.com/assets/logo.c98d2a42.svg)
+
+![Logo](https://mydevify.com/assets/index.494ac568.png)
+
+#### This GitHub open-source project isn't fully prepared for use yet; I'm still actively refining the code to enhance its functionality. Additionally, I'll be updating the MySQL database structure soon.
+
+
+
+## SocialPulse React Node.js MySQL Social Media App
 
 ### Full Stack Social Network App | Open Source
 
@@ -27,15 +36,59 @@ This repository contains the source code for SocialPulse, a full-stack social me
 - **File Upload**: Enabled users to upload files (e.g., images) to the server.
 - **User Profile**: Implemented fetching and displaying user profiles from the MySQL database.
 
-### How to Use:
+## Run Locally
 
-1. Clone the repository: `https://github.com/mydevify/SocialPulse-React-Node.js-MySQL-Social-Media-App-Full-Stack-Social-Network-App-Open-Source.git`
-2. Install dependencies for both frontend and backend: `npm install`
-3. Configure MySQL database settings in the backend configuration files.
-4. Start the backend server: `npm run dev` (or `npm start` for production)
-5. Start the frontend development server: `npm start`
+Clone the project
 
-Feel free to explore and contribute to this open-source project. Your contributions are highly appreciated!
+```bash
+  git clone gh repo clone mydevify/SocialPulse-React-Node.js-MySQL-Social-Media-App-Full-Stack-Social-Network-App-Open-Source
+```
+
+Go to the Server directory
+
+```bash
+  cd API
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm start
+```
+
+Go to the Client directory
+
+```bash
+  cd Frontend
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the Clietn
+
+```bash
+  npm run dev
+```
+
+Configure MySQL database settings in the backend configuration files.
+
+```bash
+  API/connect.js
+```
+
+Note: I'll upload the database once the project is completed.
+
+
 
 ### Contributors:
 
@@ -43,6 +96,7 @@ Feel free to explore and contribute to this open-source project. Your contributi
 - [Safak](https://github.com/safak)
 - [Lama Dev](https://www.youtube.com/@LamaDev) - For insightful tutorials and guidance on building React Node.js applications.
 
+Feel free to explore and contribute to this open-source project. Your contributions are highly appreciated!
 
 ### License:
 
