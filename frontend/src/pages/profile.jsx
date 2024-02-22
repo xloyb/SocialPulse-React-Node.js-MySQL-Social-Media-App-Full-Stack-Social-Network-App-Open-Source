@@ -5,11 +5,26 @@ import { makeRequest } from "../axios";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AuthContext } from "../context/AuthContext";
 import { useLocation } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Posts from "../components/Posts"
+import Update from "../components/update"
 
 
 const Profile = () => {
+
+  const [openUpdate,setOpenUpdate] = useState(false);
+
+
+  // Define handleUpdate function
+const handleUpdate = () => {
+  setOpenUpdate(prevState => !prevState);
+  console.log("working")
+}
+
+// Use handleUpdate function in onClick event
+<button onClick={handleUpdate}>Update</button>
+
+
   // Extract userId from the URL pathname
   const userId = parseInt(useLocation().pathname.split("/")[2]);
   // console.log("testing url", userId);
@@ -33,7 +48,7 @@ const Profile = () => {
         }),
   });
 
-  console.log(relationshipData);
+  //console.log(relationshipData);
 
   const queryClient = useQueryClient();
 
@@ -66,9 +81,7 @@ const Profile = () => {
               <div
                 className="flex-1 relative mb-6 h-32"
                 style={{
-                  backgroundImage: `url(${
-                    data.coverPic || "https://via.placeholder.com/800x400"
-                  })`,
+                  backgroundImage: `url(${data.coverPic ? `http://localhost:5173/uploads/posts/${data.coverPic}` : "https://via.placeholder.com/800x400"})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   borderRadius: "0.5rem",
@@ -76,8 +89,8 @@ const Profile = () => {
               >
                 <div className="flex items-center justify-center h-full p-4">
                   <img
-                    src={data.profilePic || "https://via.placeholder.com/80"}
-                    alt="Profile Picture"
+src={data.profilePic ? `http://localhost:5173/uploads/posts/${data.profilePic}` : "https://via.placeholder.com/80"}
+alt="Profile Picture"
                     className="w-20 h-20 rounded-full border-4 border-white bg-white"
                   />
                 </div>
@@ -173,7 +186,7 @@ const Profile = () => {
                 </div>
                 <div className="navbar-end">
                   {data.id === currentUser.id ? (
-                    <button className="btn btn-primary">Edit Profile</button>
+                    <button className="btn btn-primary"  onClick={handleUpdate} >Edit Profile</button>
                   ) : (
                     <>
                       {relationshipData &&
@@ -205,6 +218,7 @@ const Profile = () => {
             </div>
           )}
     <Posts userId={userId} />
+    {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={data} />}
     </div>
   );
 };

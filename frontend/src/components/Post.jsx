@@ -45,9 +45,9 @@ const Post = ({ post }) => {
   const handleClickLike = (user) => {
     mutation.mutate(data.includes(user.currentUser.id));
   };
-
+//console.log("Post x : ",post)
   return (
-    <>
+<>{isPending ? "Loading": (
       <div
         key={post.id}
         className="relative space-x-4 card w-auto bg-base-100 shadow-xl mb-10"
@@ -77,7 +77,7 @@ const Post = ({ post }) => {
                 style={{ textDecoration: "none", color: "inherit" }}
               >
               <span>
-                {post.username}
+                {post.username} 
 
               </span>
               </Link>
@@ -124,6 +124,7 @@ const Post = ({ post }) => {
         </div>
         <Comments postId={postidforcomment} />
       </div>
+      )}
     </>
   );
 };
