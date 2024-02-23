@@ -1,7 +1,12 @@
 /* eslint-disable react/prop-types */
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faComment, faShare } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeart,
+  faComment,
+  faShare,
+  faEllipsisVertical,
+} from "@fortawesome/free-solid-svg-icons";
 import Comments from "./comments2";
 import { useContext } from "react";
 
@@ -40,38 +45,75 @@ const Post = ({ post }) => {
     },
   });
 
+  const DeleteMutation = useMutation({
+    mutationFn: (postId) => makeRequest.delete("/posts/" + postId),
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+    },
+  });
+
   const handleClickLike = (user) => {
     mutation.mutate(data.includes(user.currentUser.id));
   };
+
+  const handleDelete = () => {
+    DeleteMutation.mutate(post.id);
+  };
+  console.log(post.userid);
+  console.log(currentUser.currentUser.id);
+  console.log(post.userId === currentUser.currentUser.id)
   //console.log("Post x : ",post)
   return (
     <>
       {isPending ? (
         "Loading"
-        ) : (
-          <div
+      ) : (
+        <div
           key={post.id}
           className="relative space-x-4 card w-auto bg-base-100 shadow-xl mb-10"
         >
           <div className="card-body">
+            <div className=" absolute top-4 right-4 h-12 w-24 px-4 py-2 rounded-lg">
+              <div className="dropdown dropdown-left">
+                <div tabIndex={0} role="button" className="btn m-1">
+                  <FontAwesomeIcon icon={faEllipsisVertical} />
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  {post.userId === currentUser.currentUser.id && (
+                    <li>
+                      <a onClick={handleDelete}>Delete</a>
+                    </li>
+                  )}
+                  {/* {post.userId === currentUser.id ? <li><a onClick={handleDelete}>Delete</a></li> :""}  */}
+                  {/* <li><a onClick={handleDelete}>Delete</a></li> */}
+                  <li>
+                    <a>Report</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
             {shouldRenderImage ? (
               <>
-                  <Link
-                    to={`/profile/${post.userId}`}
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
-                    <div className="flex items-center space-x-4">
-                      <div className="w-10 mb-3 avatar">
-                        <img
-                          alt=""
-                          className="rounded-full"
-                          src={`http://localhost:5173/uploads/posts/${post.profilePic}`}
-                        />
-                      </div>
-                      <span className="card-title" >{post.username}</span>
-          <div className="badge badge-secondary">NEW</div>
+                <Link
+                  to={`/profile/${post.userId}`}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 mb-3 avatar">
+                      <img
+                        alt=""
+                        className="rounded-full"
+                        src={`http://localhost:5173/uploads/posts/${post.profilePic}`}
+                      />
                     </div>
-                  </Link>
+                    <span className="card-title">{post.username}</span>
+                    <div className="badge badge-secondary">NEW</div>
+                  </div>
+                </Link>
                 <figure className="relative">
                   <img
                     src={`http://localhost:5173/uploads/posts/${post.img}`}
@@ -94,21 +136,7 @@ const Post = ({ post }) => {
                     </div>
                   </div>
                 </figure>
-                <h2 className="absolute card-title">
-                  {/* <div className="flex items-center space-x-4"> */}
-                  {/* <Link
-                to={`/profile/${post.userId}`}
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-        <div className="w-10 mb-3 avatar">
-          <img alt="" className="rounded-full" src={`http://localhost:5173/uploads/posts/${post.profilePic}`} />
-        </div>
-        <span className="font-bold">{post.username} </span>
-     
-      </Link>
-      </div> */}
-
-                </h2>
+                <h2 className="absolute card-title"></h2>
               </>
             ) : (
               <>
