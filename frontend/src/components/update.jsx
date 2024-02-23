@@ -1,12 +1,15 @@
 // import React  from 'react'
-import React,{  useState } from "react"
+import PropTypes from 'prop-types';
+
+import {  useState } from "react"
 import { makeRequest } from "../axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const update = ({setOpenUpdate, user}) => {
+const Update = ({setOpenUpdate, user}) => {
 
-  const [profile,setProfile] = useState(null);
-  const [cover,setCover] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [cover, setCover] = useState(null);
+  
 
   const [info,setinfo] = useState({
     username:"",
@@ -17,7 +20,7 @@ const update = ({setOpenUpdate, user}) => {
     website:"",
   });
 
-  const handlechange =(e)=>{
+  const handleChange =(e)=>{
     setinfo({...info,[e.target.name]: e.target.value});
     
   }
@@ -85,14 +88,14 @@ const update = ({setOpenUpdate, user}) => {
           <label className="block uppercase tracking-wide  text-xs font-bold mb-2" htmlFor="grid-first-name">
             UserName
           </label>
-          <input className="input input-bordered " type="text" placeholder="Username" name="username" onChange={handlechange} disabled />
+          <input className="input input-bordered " type="text" placeholder="Username" name="username" onChange={handleChange} disabled />
           
         </div>
         <div className="w-full md:w-1/2 px-3">
           <label className="block uppercase tracking-wide text-xs font-bold mb-2" htmlFor="grid-last-name">
             Name
           </label>
-          <input className="input input-bordered" type="text" placeholder="Name" name="name" onChange={handlechange} />
+          <input className="input input-bordered" type="text" placeholder="Name" name="name" onChange={handleChange} />
         </div>
       </div>
 
@@ -102,14 +105,14 @@ const update = ({setOpenUpdate, user}) => {
           <label className="block uppercase tracking-wide  text-xs font-bold mb-2" htmlFor="grid-first-name">
             Instagram
           </label>
-          <input className="input input-bordered" type="text" placeholder="https://www.instagram.com/louay_xbs/" name="instagram" onChange={handlechange} disabled />
+          <input className="input input-bordered" type="text" placeholder="https://www.instagram.com/louay_xbs/" name="instagram" onChange={handleChange} disabled />
           
         </div>
         <div className="w-full md:w-1/2 px-3">
           <label className="block uppercase tracking-wide text-xs font-bold mb-2" htmlFor="grid-last-name">
             Website
           </label>
-          <input className="input input-bordered" type="text" name="website" placeholder="https://MyDevify.com" onChange={handlechange} />
+          <input className="input input-bordered" type="text" name="website" placeholder="https://MyDevify.com" onChange={handleChange} />
         </div>
       </div>
 
@@ -120,14 +123,14 @@ const update = ({setOpenUpdate, user}) => {
           <label className="block uppercase tracking-wide  text-xs font-bold mb-2" htmlFor="grid-first-name">
             email
           </label>
-          <input className="input input-bordered" type="email" placeholder="contactxloy@gmail.com" name="email" onChange={handlechange} disabled />
+          <input className="input input-bordered" type="email" placeholder="contactxloy@gmail.com" name="email" onChange={handleChange} disabled />
           
         </div>
         <div className="w-full md:w-1/2 px-3">
           <label className="block uppercase tracking-wide text-xs font-bold mb-2" htmlFor="grid-last-name">
             Bio
           </label>
-          <input className="input input-bordered" type="text" name="bio" placeholder="About me " onChange={handlechange} />
+          <input className="input input-bordered" type="text" name="bio" placeholder="About me " onChange={handleChange} />
         </div>
       </div>
 
@@ -162,4 +165,9 @@ const update = ({setOpenUpdate, user}) => {
   )
 }
 
-export default update
+Update.propTypes = {
+  setOpenUpdate: PropTypes.func.isRequired, // Define prop type for setOpenUpdate
+  user: PropTypes.object.isRequired,
+};
+
+export default Update

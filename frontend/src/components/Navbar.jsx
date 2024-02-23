@@ -42,7 +42,7 @@ const Navbar = () => {
     <div className="sticky top-0 z-50">
       <div className="navbar bg-base-100 ">
         <div className="flex-1">
-          <Link to="/home" className="btn btn-ghost text-xl" 
+          <Link to="/" className="btn btn-ghost text-xl" 
           style={{ textDecoration: "none" }}>
           MyDevify
           </Link>
@@ -99,7 +99,7 @@ const Navbar = () => {
 
                 <img
                   alt="Tailwind CSS Navbar component"
-                  src={currentUser.profilePic}
+                  src={`http://localhost:5173/uploads/posts/${currentUser.profilePic}`}
                 />
                
               </div>

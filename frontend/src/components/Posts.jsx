@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import { makeRequest } from "../axios";
-import Post from "./post";
+import Post from "./Post";
 import { useQuery } from "@tanstack/react-query";
 
 const Posts = ({userId}) => {
   
 
   const { isPending, error, data } = useQuery({
-    queryKey: ['posts'],
+    queryKey: ['posts',userId],
     queryFn: () =>
       makeRequest.get("/posts?userId="+userId).then((res) => {
         return res.data;
