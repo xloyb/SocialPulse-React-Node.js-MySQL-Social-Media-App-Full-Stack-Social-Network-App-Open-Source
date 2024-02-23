@@ -3,7 +3,7 @@ import GridViewIcon from "@mui/icons-material/GridView";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {useContext, useEffect, useState } from "react";
 import { AuthContext} from "../context/AuthContext";
 import { makeRequest } from "../axios";
@@ -13,8 +13,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 const Navbar = () => {
 
   const { currentUser } = useContext(AuthContext);
-
-
   
   const handleToggle = (e) => {
     if (e.target.checked) {
@@ -54,26 +52,31 @@ const Navbar = () => {
 //   logoutMutaion.mutate();
 // }
 
-
+const navigate = useNavigate();
 const queryClient = useQueryClient();
 // Logout mutation
 const logoutMutation = useMutation({
   mutationFn: async () => {
     try {
       const response = await makeRequest.post("/auth/logout");
+      localStorage.removeItem("user"); // just for testing 
       return response.data;
+     
     } catch (error) {
       throw new Error(error.response.data.message || "Logout failed");
     }
   },
   onSuccess: () => {
     queryClient.invalidateQueries({ queryKey: ["auth"] });
+    
+    navigate("/login");
   },
 });
 
 const handleLogout = () => {
   console.log("Logging out...");
   logoutMutation.mutate();
+  
 };
 
 

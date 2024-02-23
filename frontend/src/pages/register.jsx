@@ -45,7 +45,7 @@ const Register = () => {
             a id nisi.
           </p>
           <Link to="/login">
-            <button className="btn btn-neutral">Neutral</button>
+            <button className="btn btn-neutral">Login</button>
           </Link>
         </div>
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">

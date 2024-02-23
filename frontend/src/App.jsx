@@ -53,13 +53,16 @@ const queryClient = new QueryClient()
     );
   };
 
+  console.log(currentUser)
   // eslint-disable-next-line react/prop-types
   const ProtectedRoute = ({ children }) => {
-    if (!currentUser) {
+    if (currentUser===null) {
       return <Navigate to="/login" />;
     }
     return children;
   };
+
+  
 
   const router = createBrowserRouter([
     {

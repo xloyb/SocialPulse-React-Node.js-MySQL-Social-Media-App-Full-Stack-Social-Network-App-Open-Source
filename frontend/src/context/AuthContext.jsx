@@ -21,7 +21,7 @@ setCurrentUser((await res).data)
   useEffect(() => {
     
     localStorage.setItem("user", JSON.stringify(currentUser));
-    console.log('currentUser:', currentUser);
+    //console.log('currentUser:', currentUser);
   }, [currentUser]);
 
   return (
