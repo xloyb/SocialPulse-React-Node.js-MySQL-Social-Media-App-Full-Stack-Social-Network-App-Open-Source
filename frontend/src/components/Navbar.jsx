@@ -6,6 +6,8 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import { Link } from "react-router-dom";
 import {useContext, useEffect, useState } from "react";
 import { AuthContext} from "../context/AuthContext";
+import { makeRequest } from "../axios";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 
 const Navbar = () => {
@@ -34,7 +36,46 @@ const Navbar = () => {
   }, [theme]);
 
 
-  
+//   const queryClient = useQueryClient();
+//   // Logout mutation
+//   const logoutMutaion = useMutation({
+    
+//     mutationFn: () => makeRequest.logout(),
+    
+//     onSuccess: () => {
+//       // Invalidate and refetch
+//       queryClient.invalidateQueries({ queryKey: ["auth"] });
+//     },
+    
+//   });
+
+// const handleLogout =()=>{
+//   // console.log("button working")
+//   logoutMutaion.mutate();
+// }
+
+
+const queryClient = useQueryClient();
+// Logout mutation
+const logoutMutation = useMutation({
+  mutationFn: async () => {
+    try {
+      const response = await makeRequest.post("/auth/logout");
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data.message || "Logout failed");
+    }
+  },
+  onSuccess: () => {
+    queryClient.invalidateQueries({ queryKey: ["auth"] });
+  },
+});
+
+const handleLogout = () => {
+  console.log("Logging out...");
+  logoutMutation.mutate();
+};
+
 
 
 
@@ -118,7 +159,7 @@ const Navbar = () => {
                 <a>Settings</a>
               </li>
               <li>
-                <a>Logout</a>
+                <a onClick={handleLogout} >Logout</a>
               </li>
             </ul>
           </div>

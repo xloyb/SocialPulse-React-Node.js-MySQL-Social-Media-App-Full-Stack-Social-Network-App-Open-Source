@@ -61,6 +61,7 @@ export const login = (req, res) => {
 };
 
 export const logout = (req, res) => {
+  //console.log("working")
   res.clearCookie("accessToken",{
     secure:true,
     sameSite:"none"
