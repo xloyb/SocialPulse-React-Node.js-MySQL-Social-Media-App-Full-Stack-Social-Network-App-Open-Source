@@ -99,6 +99,7 @@ const Register = () => {
                 type="password"
                 placeholder="password"
                 className="input input-bordered"
+                name="password"
                 onChange={handleChange}
                 required
               />
