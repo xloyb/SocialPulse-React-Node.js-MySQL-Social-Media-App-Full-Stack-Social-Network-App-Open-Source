@@ -18,7 +18,7 @@ const Profile = () => {
   // Define handleUpdate function
 const handleUpdate = () => {
   setOpenUpdate(prevState => !prevState);
-  console.log("working")
+  // console.log("working")
 }
 
 // Use handleUpdate function in onClick event
@@ -88,8 +88,7 @@ const handleUpdate = () => {
                 }}
               >
                 <div className="flex items-center justify-center h-full p-4">
-                  <img
-src={data.profilePic ? `http://localhost:5173/uploads/posts/${data.profilePic}` : "https://via.placeholder.com/80"}
+                  <img src={data.profilePic ? `http://localhost:5173/uploads/posts/${data.profilePic}` : "https://via.placeholder.com/80"}
 alt="Profile Picture"
                     className="w-20 h-20 rounded-full border-4 border-white bg-white"
                   />

@@ -7,7 +7,7 @@ const home = () => {
   return (
     <div className="place-items-center">  {/* it had grid  class */}
     
-    <Stories/>
+    <Stories />
     <Share/>
     <Posts component={(props) => <Posts userId={props.match.params.userId} />}/>
 

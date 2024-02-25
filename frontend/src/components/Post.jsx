@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
@@ -16,6 +15,7 @@ import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
 const Post = ({ post }) => {
+
   const currentUser = useContext(AuthContext);
   const shouldRenderImage = Boolean(post.img);
   const postidforcomment = post.id;

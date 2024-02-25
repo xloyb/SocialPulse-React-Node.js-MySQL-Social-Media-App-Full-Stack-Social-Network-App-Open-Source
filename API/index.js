@@ -7,6 +7,7 @@ import likeRoutes from "./routes/likes.js";
 import postRoutes from "./routes/posts.js";
 import usersRoutes from "./routes/users.js";
 import relationshipRoutes from "./routes/relationships.js";
+import storiesRoutes from "./routes/stories.js";
 import multer from "multer";
 const app = express();
 
@@ -50,6 +51,7 @@ app.use("/api/likes", likeRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/relationships", relationshipRoutes);
+app.use("/api/stories", storiesRoutes);
 
 
 app.listen(8800, () => {
