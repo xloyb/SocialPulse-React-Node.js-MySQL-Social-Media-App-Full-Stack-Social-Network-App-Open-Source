@@ -43,6 +43,7 @@ const Update = ({ setAddStory }) => {
     mutation.mutate({ img: imgUrl });
     
     setfile(null);
+    setAddStory(false);
   };
 
   // const handleShare = async (e) => {

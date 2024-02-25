@@ -13,6 +13,7 @@ import Courses from "../assets/icons/12.png";
 import Fund from "../assets/icons/13.png";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const Leftbar = () => {
 
@@ -37,16 +38,25 @@ const Leftbar = () => {
             className="drawer-overlay"
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+            
+            
+            <Link
+                  to={`/profile/${currentUser.id}`}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+
+            
             <div className="w-10 mb-3 avatar">
               <img
                 alt=""
                 className="rounded-full"
-                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-              />
+                src={currentUser.profilePic ? `http://localhost:5173/uploads/posts/${currentUser.profilePic}` : "http://localhost:5173/default/default_profile.png"}
+                />
               <li>
                 <span>{currentUser.username}</span>
               </li>
             </div>
+                </Link>
 
             <div className="w-10 mb-3 avatar">
               <img alt="" className="rounded-full" src={Friends} />

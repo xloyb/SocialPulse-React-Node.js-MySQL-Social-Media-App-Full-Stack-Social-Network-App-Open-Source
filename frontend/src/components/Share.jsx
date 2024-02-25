@@ -52,7 +52,7 @@ const Share = () => {
     <div className="p-4 bg-base-100 shadow-xl rounded-md">
       <div className="flex items-center space-x-4">
         <div className="w-10 mb-3 avatar">
-          <img alt="" className="rounded-full" src={`http://localhost:5173/uploads/posts/${currentUser.profilePic}`} />
+          <img alt="" className="rounded-full"  src={currentUser.profilePic ? `http://localhost:5173/uploads/posts/${currentUser.profilePic}` : "http://localhost:5173/default/default_profile.png"} />
         </div>
         <span className="font-bold">{currentUser.name}</span>
       </div>

@@ -3,17 +3,15 @@ import GridViewIcon from "@mui/icons-material/GridView";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import { Link, useNavigate } from "react-router-dom";
-import {useContext, useEffect, useState } from "react";
-import { AuthContext} from "../context/AuthContext";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
 import { makeRequest } from "../axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-
 const Navbar = () => {
-
   const { currentUser } = useContext(AuthContext);
-  
+
   const handleToggle = (e) => {
     if (e.target.checked) {
       setTheme("dark");
@@ -23,9 +21,8 @@ const Navbar = () => {
   };
 
   const [theme, setTheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light",
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
-
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -33,64 +30,65 @@ const Navbar = () => {
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
 
+  //   const queryClient = useQueryClient();
+  //   // Logout mutation
+  //   const logoutMutaion = useMutation({
 
-//   const queryClient = useQueryClient();
-//   // Logout mutation
-//   const logoutMutaion = useMutation({
-    
-//     mutationFn: () => makeRequest.logout(),
-    
-//     onSuccess: () => {
-//       // Invalidate and refetch
-//       queryClient.invalidateQueries({ queryKey: ["auth"] });
-//     },
-    
-//   });
+  //     mutationFn: () => makeRequest.logout(),
 
-// const handleLogout =()=>{
-//   // console.log("button working")
-//   logoutMutaion.mutate();
-// }
+  //     onSuccess: () => {
+  //       // Invalidate and refetch
+  //       queryClient.invalidateQueries({ queryKey: ["auth"] });
+  //     },
 
-const navigate = useNavigate();
-const queryClient = useQueryClient();
-// Logout mutation
-const logoutMutation = useMutation({
-  mutationFn: async () => {
-    try {
-      const response = await makeRequest.post("/auth/logout");
-      localStorage.removeItem("user"); // just for testing 
-      return response.data;
-     
-    } catch (error) {
-      throw new Error(error.response.data.message || "Logout failed");
-    }
-  },
-  onSuccess: () => {
-    queryClient.invalidateQueries({ queryKey: ["auth"] });
-    
-    navigate("/login");
-  },
-});
+  //   });
 
-const handleLogout = () => {
-  console.log("Logging out...");
-  logoutMutation.mutate();
-  
-};
+  // const handleLogout =()=>{
+  //   // console.log("button working")
+  //   logoutMutaion.mutate();
+  // }
 
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  // Logout mutation
+  const logoutMutation = useMutation({
+    mutationFn: async () => {
+      try {
+        const response = await makeRequest.post("/auth/logout");
+        localStorage.removeItem("user"); // just for testing
+        return response.data;
+      } catch (error) {
+        throw new Error(error.response.data.message || "Logout failed");
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["auth"] });
 
+      navigate("/login");
+    },
+  });
 
+  const handleLogout = () => {
+    console.log("Logging out...");
+    logoutMutation.mutate();
+  };
 
   return (
     <div className="sticky top-0 z-50">
       <div className="navbar bg-base-100 ">
         <div className="flex-1">
-          <Link to="/" className="btn btn-ghost text-xl" 
-          style={{ textDecoration: "none" }}>
-          MyDevify
+          <Link
+            to="/"
+            className="btn btn-ghost text-xl"
+            style={{ textDecoration: "none" }}
+          >
+            MyDevify
           </Link>
+          <Link
+            to="/">
+
           <HomeIcon />
+            </Link>
           <label className="swap swap-rotate">
             {/* this hidden checkbox controls the state */}
             <input
@@ -127,25 +125,29 @@ const handleLogout = () => {
             />
           </div>
         </div>
-       
+
         <div className="flex-none gap-2">
           <PermIdentityIcon />
           <NotificationsNoneIcon />
           <MailOutlineIcon />
-          <span><span>{currentUser.username || 'Guest'}</span></span>
+          <span>
+            <span>{currentUser.username || "Guest"}</span>
+          </span>
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
               role="button"
               className="btn btn-ghost btn-circle avatar"
-            > 
+            >
               <div className="w-10 rounded-full">
-
                 <img
-                  alt="Tailwind CSS Navbar component"
-                  src={`http://localhost:5173/uploads/posts/${currentUser.profilePic}`}
+                  src={
+                    currentUser.profilePic
+                      ? `http://localhost:5173/uploads/posts/${currentUser.profilePic}`
+                      : "http://localhost:5173/default/default_profile.png"
+                  }
+                  alt="Profile Picture"
                 />
-               
               </div>
             </div>
             <ul
@@ -153,16 +155,30 @@ const handleLogout = () => {
               className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
+              <NavLink
+                  to={`/profile/${currentUser.id}`}
+                  
+                >
                 <a className="justify-between">
                   Profile
-                  <span className="badge">New</span>
+                  {/* <span className="badge">New</span> */}
                 </a>
+                  </NavLink>
               </li>
               <li>
-                <a>Settings</a>
+              <NavLink
+                  to={`/profile/${currentUser.id}`}
+                  
+                >
+                <a className="justify-between">
+                Settings
+                  {/* <span className="badge">New</span> */}
+                </a>
+                  </NavLink>
+                
               </li>
               <li>
-                <a onClick={handleLogout} >Logout</a>
+                <a onClick={handleLogout}>Logout</a>
               </li>
             </ul>
           </div>

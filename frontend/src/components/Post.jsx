@@ -15,7 +15,6 @@ import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
 const Post = ({ post }) => {
-
   const currentUser = useContext(AuthContext);
   const shouldRenderImage = Boolean(post.img);
   const postidforcomment = post.id;
@@ -107,7 +106,11 @@ const Post = ({ post }) => {
                       <img
                         alt=""
                         className="rounded-full"
-                        src={`http://localhost:5173/uploads/posts/${post.profilePic}`}
+                        src={
+                          currentUser.profilePic
+                            ? `http://localhost:5173/uploads/posts/${currentUser.profilePic}`
+                            : "http://localhost:5173/default/default_profile.png"
+                        }
                       />
                     </div>
                     <span className="card-title">{post.username}</span>
@@ -140,15 +143,26 @@ const Post = ({ post }) => {
               </>
             ) : (
               <>
-                <h2 className="card-title">
-                  <Link
-                    to={`/profile/${post.userId}`}
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
-                    <span>{post.username}</span>
-                  </Link>
-                  <div className="badge badge-secondary">NEW</div>
-                </h2>
+                <Link
+                  to={`/profile/${post.userId}`}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 mb-3 avatar">
+                      <img
+                        alt=""
+                        className="rounded-full"
+                        src={
+                          currentUser.profilePic
+                            ? `http://localhost:5173/uploads/posts/${currentUser.profilePic}`
+                            : "http://localhost:5173/default/default_profile.png"
+                        }
+                      />
+                    </div>
+                    <span className="card-title">{post.username}</span>
+                    <div className="badge badge-secondary">NEW</div>
+                  </div>
+                </Link>
               </>
             )}
 
