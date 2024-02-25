@@ -88,6 +88,7 @@ Configure MySQL database settings in the backend configuration files.
 ```
 
 ~~Note: I'll upload the database once the project is completed.~~
+
 The Database has been added to the project Source.
 
 
