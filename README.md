@@ -14,6 +14,46 @@
 
 This repository contains the source code for SocialPulse, a full-stack social media application built using React.js, daisyUI, Tailwind CSS, Express.js, Node.js, MySQL, and React Query. SocialPulse provides a comprehensive platform for users to connect, share posts, interact with friends, and engage in social networking activities.
 
+
+### ShowCase:
+- **Homepage Dark Mode**:
+
+  ![Homepage Dark Mode](ShowCase/dark.PNG)
+
+
+- **Homepage Light Mode**:
+
+  ![Homepage Light Mode](ShowCase/Light.PNG)
+
+
+- **Login Page**:
+
+  ![Login Page](ShowCase/Login.PNG)
+
+
+- **Register Page**:
+
+  ![Register Page](ShowCase/register.PNG)
+
+
+- **Profile**:
+
+  ![Profile](ShowCase/Profile.PNG)
+
+
+- **Manage Settings**:
+
+  ![Manage Settings](ShowCase/Edit_Profile.PNG)
+
+
+- **Manage Post**:
+
+  ![Manage Post](ShowCase/manage_post.PNG)
+
+- **And many more features such as creating and managing stories, etc...**
+
+
+
 ### Technologies Used:
 
 - **React.js**: A JavaScript library for building user interfaces.
@@ -86,6 +126,14 @@ Configure MySQL database settings in the backend configuration files.
 ```bash
   API/connect.js
 ```
+
+```bash
+ Login info:
+ 
+ Username: xLoy
+ password: 123456789
+```
+
 
 ~~Note: I'll upload the database once the project is completed.~~
 
