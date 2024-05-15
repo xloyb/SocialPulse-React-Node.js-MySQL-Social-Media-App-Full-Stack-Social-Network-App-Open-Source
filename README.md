@@ -153,6 +153,3 @@ Feel free to explore and contribute to this open-source project. Your contributi
 
 This project is licensed under the [MIT License](LICENSE).
 
----
-
-This README.md provides a detailed overview of the SocialPulse project, its features, technologies used, and instructions for usage and contribution. It aims to attract potential contributors and users while providing clear guidance on how to get started with the project.
