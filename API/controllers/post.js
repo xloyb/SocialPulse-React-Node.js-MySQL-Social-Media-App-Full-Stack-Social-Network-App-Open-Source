@@ -1,9 +1,9 @@
 import moment from "moment/moment.js";
 import { db } from "../connect.js";
 import jwt from "jsonwebtoken";
+import { redisClient } from '../redisClient.js';
 
-
-export const getPosts = (req, res) => {
+export const getPosts = async(req, res) => {
  const userId = req.query.userId;
   // console.log('UserId from query parameters:', req.query.userId);
   // console.log('Request :', req.query);
@@ -12,9 +12,21 @@ export const getPosts = (req, res) => {
   if (!token) return res.status(401).json("Not logged in!"); 
 
 
-  jwt.verify(token, "secretkey", (err, userInfo) => {
+  jwt.verify(token, "secretkey", async (err, userInfo) => {
     if (err) return res.status(403).json("Token is not valid!");
 
+
+
+  
+    const redisKey = userId
+      ? `posts_user_${userId}`
+      : `posts_feed_${userInfo.id}`;
+
+    // 👉 Try to fetch from Redis
+    const cachedPosts = await redisClient.get(redisKey);
+    if (cachedPosts) {
+      return res.status(200).json(JSON.parse(cachedPosts));
+    }
 
     // const q = `SELECT p.*,username, u.id AS userId, name, profilePic FROM posts AS p JOIN users AS u ON (u.id = p.userId)
     // LEFT JOIN relationships AS r ON (p.userId = r.followedUserId) WHERE r.followerUserId= ? OR p.userId =?
@@ -47,8 +59,8 @@ export const getPosts = (req, res) => {
         return res.status(200).json(data);
       });
 
-
-
+       await redisClient.set(redisKey, JSON.stringify(data), { EX: 60 }); // expires in 60s
+          return res.status(200).json(data);
   });
 };
 
