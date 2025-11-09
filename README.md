@@ -1,8 +1,4 @@
 ﻿
-![Logo](https://mydevify.com/assets/logo.c98d2a42.svg)
-
-![Logo](https://mydevify.com/assets/index.494ac568.png)
-
 #### ~~This GitHub open-source project isn't fully prepared for use yet; I'm still actively refining the code to enhance its functionality. Additionally, I'll be updating the MySQL database structure soon.~~
 
 #### Great news! This GitHub open-source project is now fully prepared for use. Dive in and explore its features!
@@ -152,4 +148,5 @@ Feel free to explore and contribute to this open-source project. Your contributi
 ### License:
 
 This project is licensed under the [MIT License](LICENSE).
+
 
