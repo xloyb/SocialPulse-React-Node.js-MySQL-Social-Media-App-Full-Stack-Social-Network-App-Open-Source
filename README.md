@@ -140,13 +140,13 @@ The Database has been added to the project Source.
 ### Contributors:
 
 - [xLoy](https://github.com/mydevify)
-- [Safak](https://github.com/safak)
-- [Lama Dev](https://www.youtube.com/@LamaDev) - For insightful tutorials and guidance on building React Node.js applications.
+- [DEEPAK SINGH](https://github.com/deepak30012004) 
 
 Feel free to explore and contribute to this open-source project. Your contributions are highly appreciated!
 
 ### License:
 
 This project is licensed under the [MIT License](LICENSE).
+
 
 
